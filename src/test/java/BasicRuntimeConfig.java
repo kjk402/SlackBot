@@ -10,7 +10,7 @@ public class BasicRuntimeConfig {
 
     public static SlackClientRuntimeConfig get() {
         return SlackClientRuntimeConfig.builder()
-                .setTokenSupplier(() -> "xoxb-1529342876677-1539263615285-xHCr8Vq7CPZbRZBg1pYYapPt")
+                .setTokenSupplier(() -> "slack-token")
                 .build();
     }
 
