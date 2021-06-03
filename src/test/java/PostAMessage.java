@@ -17,7 +17,7 @@ public class PostAMessage {
 
     //private static final Logger LOG = LoggerFactory.getLogger(PostAMessage.class);
 
-    public static ChatPostMessageResponse messageChannel(String channelToPostIn,String Emoji,String UserName, SlackClient slackClient, String text) {
+    public static ChatPostMessageResponse messageChannel(String channelToPostIn, String Emoji, String UserName, SlackClient slackClient, String text) {
         String rr = ":umb:";
         Boolean bbb = Boolean.parseBoolean(rr);
         Result<ChatPostMessageResponse, SlackError> postResult = slackClient.postMessage(
@@ -30,10 +30,11 @@ public class PostAMessage {
         ).join();
         return postResult.unwrapOrElseThrow(); // release failure here as a RTE
     }
-    public static SlackError upload(String channelToPostIn, SlackClient slackClient, String filename,String content) {
+
+    public static SlackError upload(String channelToPostIn, SlackClient slackClient, String filename, String content) {
         Result<FilesUploadResponse, SlackError> post = slackClient.uploadFile(FilesUploadParams.builder()
                 .setChannels(Collections.singletonList(channelToPostIn))
-                .setFilename(filename+".txt")
+                .setFilename(filename + ".txt")
                 .setTitle(filename)
                 .setContent(content)
                 .build()).join();
@@ -41,15 +42,14 @@ public class PostAMessage {
     }
 
 
-
     public static void main(String[] args) throws IOException, ParseException {
-    //public void testSlackChatMessage() {
+        //public void testSlackChatMessage() {
 
         SlackClient client = BasicRuntimeConfig.getClient();
 
-        ChatPostMessageResponse response = messageChannel("일반", ":umb:","TEst",client, "안녕하세요");
+        ChatPostMessageResponse response = messageChannel("일반", ":umb:", "TEst", client, "안녕하세요");
         //LOG.info("Got: {}", response);
-        SlackError upload = upload("일반",client,"test.txt","cccc");
+        //SlackError upload = upload("일반",client,"test.txt","cccc");
 
     }
 

@@ -11,7 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Covid19 {
-    public static void main(String[] args) throws IOException {
+    public static void covid() throws IOException {
         Calendar cal = Calendar.getInstance();
         int year = cal.get(cal.YEAR);
         int month = cal.get(cal.MONTH)+1;
@@ -83,7 +83,7 @@ public class Covid19 {
         Decide = Decide.substring(1,6);
         Decide2 = Decide2.substring(1,6);
         Integer newDecide = Integer.parseInt(Decide) -Integer.parseInt(Decide2);
-        Death = Death.substring(1,4);
+        Death = Death.substring(1,5);
         System.out.println(String.format("신규 확진자수는 %d명입니다.",newDecide));
         System.out.println(String.format("어제 확진자수는 %s명입니다.",Decide2));
         System.out.println(String.format("총 확진자수는 %s명입니다.",Decide));
@@ -96,5 +96,6 @@ public class Covid19 {
         SlackClient client = BasicRuntimeConfig.getClient();
         PostAMessage.messageChannel("covid19",":corona19:","COVID19_Alert",client,alert);
     }
+
 }
 

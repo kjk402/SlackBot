@@ -5,17 +5,9 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class LunchRecommanding {
-    public static void main(String[] args) throws IOException{
-        String food[] = {"국밥", "피자", "치킨", "설렁탕", "중국집", "햄버거"};
-//        int cnt[] = new int[food.length];
-//        for (int j=0; j<10000000; j++) {
-//            int num = (int)(Math.random()*food.length);
-//            for(int i=0; i<food.length; i++) {
-//                if (i==num) {
-//                    cnt[i]++;
-//                }
-//            }
-//        }
+    public static void lunch() throws IOException{
+        String food[] = {"국밥", "치킨", "설렁탕", "중국집", "버거"};
+
         String command;
         command = food[(int) (Math.random() * food.length)];
 
@@ -41,9 +33,6 @@ public class LunchRecommanding {
 
                 System.out.println(command);
 
-//                FileWriter fw = new FileWriter(file);
-//                fw.write(result);
-//                fw.close();
                 FileWriter fw = new FileWriter(file,true);
                 fw.write(command+"\r\n");
                 fw.close();
@@ -51,12 +40,15 @@ public class LunchRecommanding {
 
             System.out.println(result);
         }
-//        SlackClient client = BasicRuntimeConfig.getClient();
+
         String recommand = "";
-        recommand = recommand + String.format("점심식사로 %s 추천드립니다.",command);
-//        //PostAMessage.messageChannel("meal",":foodbot:","Food",client,recommand);
-//        PostAMessage.messageChannel("일반",":corona19:","COVID19_Alert",client,"ㅇㅇ");
+        recommand =  recommand+":식사:식사시간입니다.:식사:\n";
+        recommand =  recommand+String.format("점심식사로 %s:%s: 추천드립니다.\n",command,command);
+        recommand = recommand + "https://www.diningcode.com/list.php?query=강남역%20"+command;
+        recommand = recommand + String.format("",command);
+
         SlackClient client = BasicRuntimeConfig.getClient();
         PostAMessage.messageChannel("meal",":foodbot:","Food",client,recommand);
     }
+
 }

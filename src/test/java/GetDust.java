@@ -48,6 +48,7 @@ public class GetDust {
         FineDust = FineDust.replace("</pm10Value>","");
 
         UlteaFineDust = UlteaFineDust.replace("</pm25Value>","");
+        System.out.println(sb);
         System.out.println(FineDust);
         System.out.println(UlteaFineDust);
         String frr = String.format("미세먼지 농도는 %s ㎍/m³입니다. \n초미세먼지 농도는 %s ㎍/m³입니다.",FineDust,UlteaFineDust);
@@ -55,10 +56,10 @@ public class GetDust {
         PostAMessage.messageChannel("wheather",":weather:","weather_forecast", client, frr);
         int d1 = Integer.parseInt(FineDust);
         int d2 = Integer.parseInt(UlteaFineDust);
-        if (d1>30 || d2>30) {
+        if (d1>50 || d2>50) {
             PostAMessage.messageChannel("wheather",":weather:","weather_forecast",client, "`대기농도가 나쁩니다. 마스크를 착용하세요`:kfmask:");
         }
-        else if (d1>20||d2>20){
+        else if (d1>30||d2>30){
             //PostAMessage.messageChannel("bat",client, "/giphy pizza");
             PostAMessage.messageChannel("wheather",":weather:","weather_forecast",client, "대기농도가 보통입니다. 야외활동 자제바랍니다.");
 
@@ -67,4 +68,5 @@ public class GetDust {
             PostAMessage.messageChannel("wheather",":weather:","weather_forecast",client,"대기농도가 좋습니다. 야외활동 추천!");
         }
     }
+
 }

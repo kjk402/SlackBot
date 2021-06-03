@@ -6,17 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DinnerRecommanding {
-    public static void main(String[] args)throws IOException {
-        String food[] = {"국밥", "피자", "치킨", "설렁탕", "중국집", "햄버거","삼겹살","부대찌개","김치찌개"};
-//        int cnt[] = new int[food.length];
-//        for (int j=0; j<10000000; j++) {
-//            int num = (int)(Math.random()*food.length);
-//            for(int i=0; i<food.length; i++) {
-//                if (i==num) {
-//                    cnt[i]++;
-//                }
-//            }
-//        }
+    public static void dinner() throws IOException {
+        String food[] = {"국밥", "치킨", "설렁탕", "중국집", "버거","삼겹살","부대찌개","김치찌개"};
+
         String command;
         command = food[(int) (Math.random() * food.length)];
 
@@ -44,7 +36,9 @@ public class DinnerRecommanding {
                 SlackClient client = BasicRuntimeConfig.getClient();
                 System.out.println(command);
                 String recommand = "";
-                recommand =  recommand+String.format("저녁식사로 %s 추천드립니다.",command);
+                recommand =  recommand+":식사:식사시간입니다.:식사:\n";
+                recommand =  recommand+String.format("저녁식사로 %s:%s: 추천드립니다.\n",command,command);
+                recommand = recommand + "https://www.diningcode.com/list.php?query=강남역%20"+command;
                 PostAMessage.messageChannel("meal",":foodbot:","Food",client,recommand);
 
                 FileWriter fw = new FileWriter(file,true);
@@ -74,9 +68,8 @@ public class DinnerRecommanding {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
         }
     }
+
 }
 
